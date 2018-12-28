@@ -93,7 +93,7 @@ let item = {
 	
 console.log(item);
 
-if ('discount' in item && item.discount != '') {
+if ('discount' in item && parseFloat(item.discount)) { // Если в условии имелось в виду любое значение, тогда  if ('discount' in item && item.discount != '') {
 	item.priceWithDiscount = parseFloat(item.price)*((100 - parseFloat(item.discount))/100);
 	console.log(item.priceWithDiscount);
 } else if (!('discount' in item)) {
@@ -101,3 +101,18 @@ if ('discount' in item && item.discount != '') {
 }
 
 // task if else # 6:
+let product = {
+	name: 'Яблоко',
+	price: '10$'
+};
+
+let min = 10; // minimum price
+let max = 20; // maximum price
+
+if (parseFloat(product.price) >= min && parseFloat(product.price) <= max) {
+	console.log(product['name']);
+} else {
+	console.log('Товаров не найдено.');
+}
+
+
