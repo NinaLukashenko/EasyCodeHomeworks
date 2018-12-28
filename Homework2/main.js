@@ -93,7 +93,7 @@ let item = {
 	
 console.log(item);
 
-if ('discount' in item && parseFloat(item.discount)) { // Если в условии имелось в виду любое значение, тогда  if ('discount' in item && item.discount != '') {
+if ('discount' in item && item.discount != '') { 
 	item.priceWithDiscount = parseFloat(item.price)*((100 - parseFloat(item.discount))/100);
 	console.log(item.priceWithDiscount);
 } else if (!('discount' in item)) {
