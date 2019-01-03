@@ -1,7 +1,7 @@
 //task 1:
-let display = 'inline';
+let a = 'none';
 
-switch (display) {
+switch (a) {
 	case 'block' :
 		console.log('block');
 		break;
