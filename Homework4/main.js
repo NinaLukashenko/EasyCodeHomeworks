@@ -99,7 +99,7 @@ console.log(changeCollection([1, 2, 3], ['a','b', 'c']));
 
 
 //task 8:
-let users = [ {name: "Denis”, age: “29”, gender: “male”},
+let users = [ {name: "Denis", age: “29”, gender: “male”},
 			  {name: "Ivan", age: "20", gender: "male"},
 			  {name: "Ann", age: "20", gender: "female"},
 			  {name: "Sara", age: "20", gender: "female"},
