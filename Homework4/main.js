@@ -45,27 +45,28 @@ function getCodeStringFromNumber(text) {
 console.log(getCodeStringFromNumber('hello'));
 
 
-// //task 4:
-// let userNumber = +prompt('Введите число в диапазоне от 1 до 10.');
+//task 4:
+let userNumber = +prompt('Введите число в диапазоне от 1 до 10.');
 
-// while(true) {
-// 	if (userNumber > 10 || userNumber <= 0) {
-// 		userNumber = +prompt('Ваше число не подходит. \nВведите число в диапазоне от 1 до 10, пожалуйста!');
-// 	} else {
-// 		break;
-// 	}
-// };
+while(true) {
+	if (userNumber > 10 || userNumber <= 0) {
+		userNumber = +prompt('Ваше число не подходит. \nВведите число в диапазоне от 1 до 10, пожалуйста!');
+	} else {
+		break;
+	}
+};
 
-// function guessNumber(userNumber) {
-// 	let winningNumber = Math.ceil(Math.random()*10); //от 1 до 10
-// 	if (userNumber === winningNumber) {
-// 		return ('Вы выиграли');
-// 	} else {
-// 		return (`Вы не угадали ваше число ${userNumber}, а выпало число ${winningNumber}`)
-// 	}
-// }
-// let gameResult = guessNumber(userNumber);
-// alert(gameResult);
+function guessNumber(userNumber) {
+	let winningNumber = Math.ceil(Math.random()*10); //от 1 до 10
+	if (userNumber === winningNumber) {
+		return ('Вы выиграли');
+	} else {
+		return (`Вы не угадали ваше число ${userNumber}, а выпало число ${winningNumber}`)
+	}
+}
+let gameResult = guessNumber(userNumber);
+alert(gameResult);
+
 
 //task 5:
 function getArray(n) {
@@ -87,6 +88,7 @@ function doubleArray(arr) {
 
 console.log(doubleArray([1, 2, 3]));
 
+
 //task 7:
 function changeCollection() {
 	for (let i = 0; i < arguments.length; i++) {
@@ -101,13 +103,24 @@ console.log(changeCollection([1, 2, 3], ['a','b', 'c']));
 //task 8:
 let users = [ {name: "Denis", age: "29", gender: "male"},
 			  {name: "Ivan", age: "20", gender: "male"},
-			  {name: "Ann", age: "20", gender: "female"},
+			  {name: "Anna", age: "20", gender: "female"},
 			  {name: "Sara", age: "20", gender: "female"},
 			  {name: "Tom", age: "20", gender: "male"}
 			]
 
-function getUsers(users, field, value) {
-
+function getUsers(arr, field, value) {
+	if (arr === undefined || field === undefined || value === undefined) { // еще как вариант проверять if (arguments.length !== 3) {...} Как лучше?
+		console.log('В функцию getUsers нужно передать три аргумента!\nПередайте внужное количество аргументов и попробуйте еще раз.');
+		return;
+	} else {
+		let newUsersArray = [];
+		for (let i = 0; i < arr.length; i++) {
+			if (arr[i][field] === value) {
+				newUsersArray.push(arr[i]);
+			}
+		}
+		return newUsersArray;
+	}
 }
 
-console.log(getUsers(users, "gender", "male"))
+console.log(getUsers(users, "gender", "male"));
