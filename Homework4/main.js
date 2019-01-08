@@ -112,7 +112,7 @@ let users = [
 
 function getUsers(arr, field, value) {
 	if (arr === undefined || field === undefined || value === undefined) { // еще как вариант проверять if (arguments.length !== 3) {...} Как лучше?
-		console.log('В функцию getUsers нужно передать три аргумента!\nПередайте внужное количество аргументов и попробуйте еще раз.');
+		console.log('В функцию getUsers нужно передать три аргумента!\nПередайте нужное количество аргументов и попробуйте еще раз.');
 		return;
 	} else {
 		let newUsersArray = [];
