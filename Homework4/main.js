@@ -91,10 +91,12 @@ console.log(doubleArray([1, 2, 3]));
 
 //task 7:
 function changeCollection() {
+	let newCol = [];
 	for (let i = 0; i < arguments.length; i++) {
 		arguments[i].shift();
+		newCol[i] = arguments[i];
 	}
-	return arguments;
+	return newCol;
 }
 
 console.log(changeCollection([1, 2, 3], ['a','b', 'c']));
