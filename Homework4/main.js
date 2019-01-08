@@ -6,7 +6,7 @@
 //https://learn.javascript.ru/arguments-pseudoarray
 
 function multiply() {
-	if (arguments.length === 0) {
+	if (!arguments.length) {
 		return 0;
 	} else {
 		let mulp = 1;
