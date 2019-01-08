@@ -17,7 +17,7 @@ function multiply() {
 	}
 }
 
-console.log(multiply(1, 2, 3));
+console.log( multiply(1, 2, 3) );
 
 
 //task 2:
@@ -25,7 +25,7 @@ function getReverseString(string) {
 	return string.split('').reverse().join('');
 }
 
-console.log(getReverseString('test'));
+console.log( getReverseString('test') );
 
 
 //task 3:
@@ -41,7 +41,7 @@ function getCodeStringFromNumber(text) {
 	return codeString;
 }
 
-console.log(getCodeStringFromNumber('hello'));
+console.log( getCodeStringFromNumber('hello') );
 
 
 //task 4:
@@ -56,7 +56,7 @@ while(true) {
 };
 
 function guessNumber(userNumber) {
-	let winningNumber = Math.ceil(Math.random()*10); //от 1 до 10
+	let winningNumber = Math.ceil( Math.random()*10 ); //от 1 до 10
 	if (userNumber === winningNumber) {
 		return ('Вы выиграли');
 	} else {
@@ -76,16 +76,16 @@ function getArray(n) {
 	return myArray;
 }
 
-console.log(getArray(10));
+console.log( getArray(10) );
 
 
 //task 6:
 function doubleArray(arr) {
-	let newArr = arr.concat(arr.slice());
+	let newArr = arr.concat( arr.slice() );
 	return newArr;
 }
 
-console.log(doubleArray([1, 2, 3]));
+console.log( doubleArray([1, 2, 3]) );
 
 
 //task 7:
@@ -98,16 +98,17 @@ function changeCollection() {
 	return newCol;
 }
 
-console.log(changeCollection([1, 2, 3], ['a','b', 'c']));
+console.log( changeCollection([1, 2, 3], ['a','b', 'c']) );
 
 
 //task 8:
-let users = [ {name: "Denis", age: "29", gender: "male"},
-			  {name: "Ivan", age: "20", gender: "male"},
-			  {name: "Anna", age: "20", gender: "female"},
-			  {name: "Sara", age: "20", gender: "female"},
-			  {name: "Tom", age: "20", gender: "male"}
-			]
+let users = [
+			{name: "Denis", age: "29", gender: "male"},
+			{name: "Ivan", age: "20", gender: "male"},
+			{name: "Anna", age: "20", gender: "female"},
+			{name: "Sara", age: "20", gender: "female"},
+			{name: "Tom", age: "20", gender: "male"}
+];
 
 function getUsers(arr, field, value) {
 	if (arr === undefined || field === undefined || value === undefined) { // еще как вариант проверять if (arguments.length !== 3) {...} Как лучше?
@@ -124,4 +125,4 @@ function getUsers(arr, field, value) {
 	}
 }
 
-console.log(getUsers(users, "gender", "male"));
+console.log( getUsers(users, "gender", "male") );
