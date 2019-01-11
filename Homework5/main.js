@@ -2,7 +2,7 @@
 function processArray(array, handler) {
 	let res = '';
 	for (let i = 0; i < array.length; i++) {
-		res+=handler(array[i]);
+		res += handler(array[i]);
 	}
 	let result = res.trim();
 	return `New value: ${result}`;
