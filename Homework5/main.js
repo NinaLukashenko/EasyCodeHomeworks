@@ -1,4 +1,4 @@
-//task 1: //check 2 spaces!!!
+//task 1: 
 function processArray(array, handler) {
 	let res = '';
 	for (let i = 0; i < array.length; i++) {
