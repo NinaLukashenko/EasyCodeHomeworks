@@ -17,7 +17,7 @@ function multiply() {
 	}
 }
 
-console.log( multiply(1, 2, 3) );
+console.log( multiply(-5, -2) );
 
 
 //task 2:
@@ -44,27 +44,27 @@ function getCodeStringFromNumber(text) {
 console.log( getCodeStringFromNumber('hello') );
 
 
-//task 4:
-let userNumber = +prompt('Введите число в диапазоне от 1 до 10.');
+// //task 4:
+// let userNumber = +prompt('Введите число в диапазоне от 1 до 10.');
 
-while(true) {
-	if (userNumber > 10 || userNumber <= 0) {
-		userNumber = +prompt('Ваше число не подходит. \nВведите число в диапазоне от 1 до 10, пожалуйста!');
-	} else {
-		break;
-	}
-};
+// while(true) {
+// 	if (userNumber > 10 || userNumber <= 0) {
+// 		userNumber = +prompt('Ваше число не подходит. \nВведите число в диапазоне от 1 до 10, пожалуйста!');
+// 	} else {
+// 		break;
+// 	}
+// };
 
-function guessNumber(userNumber) {
-	let winningNumber = Math.ceil( Math.random()*10 ); //от 1 до 10
-	if (userNumber === winningNumber) {
-		return ('Вы выиграли');
-	} else {
-		return (`Вы не угадали ваше число ${userNumber}, а выпало число ${winningNumber}`)
-	}
-}
-let gameResult = guessNumber(userNumber);
-alert(gameResult);
+// function guessNumber(userNumber) {
+// 	let winningNumber = Math.ceil( Math.random()*10 ); //от 1 до 10
+// 	if (userNumber === winningNumber) {
+// 		return ('Вы выиграли');
+// 	} else {
+// 		return (`Вы не угадали ваше число ${userNumber}, а выпало число ${winningNumber}`)
+// 	}
+// }
+// let gameResult = guessNumber(userNumber);
+// alert(gameResult);
 
 
 //task 5:
@@ -76,7 +76,7 @@ function getArray(n) {
 	return myArray;
 }
 
-console.log( getArray(10) );
+console.log( getArray(7) );
 
 
 //task 6:
@@ -112,7 +112,7 @@ let users = [
 
 function getUsers(arr, field, value) {
 	if (arr === undefined || field === undefined || value === undefined) { // еще как вариант проверять if (arguments.length !== 3) {...} Как лучше?
-		console.log('В функцию getUsers нужно передать три аргумента!\nПередайте внужное количество аргументов и попробуйте еще раз.');
+		console.log('В функцию getUsers нужно передать три аргумента!\nПередайте нужное количество аргументов и попробуйте еще раз.');
 		return;
 	} else {
 		let newUsersArray = [];
@@ -125,4 +125,4 @@ function getUsers(arr, field, value) {
 	}
 }
 
-console.log( getUsers(users, "gender", "male") );
+console.log( getUsers(users, "gender", "female") );

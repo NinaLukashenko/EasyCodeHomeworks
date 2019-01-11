@@ -1,5 +1,5 @@
 //task 1:
-let a = 'none';
+let a = 'hz';
 
 switch (a) {
 	case 'block' :
@@ -20,7 +20,7 @@ switch (a) {
 // "... когда скобки есть – код лучше читается. Так что рекомендуется их писать" -
 // https://learn.javascript.ru/ifelse
 //task 2.1:
-let visibility = 'hidden';
+let visibility = 'visible';
 
 visibility = (visibility === 'hidden') ? 'visible' : 'hidden';
 
@@ -28,7 +28,7 @@ console.log(visibility);
 
 
 //task 2.2:
-let number = 6;
+let number = 5;
 
 number = (number === 0) ? 1 :
 	(number < 0) ? 'less than zero':
@@ -40,7 +40,7 @@ console.log(number);
 //task 2.3:
 let car = {
 	name: 'Lexus',
-	age: 10,
+	age: 5.5,
 	create: 2008,
 	needRepair: false
 };
@@ -56,7 +56,7 @@ console.log(car);
 //https://learn.javascript.ru/string
 //Использование переменной і в каждом цикле замыливает глаз, поэтому использовала разные буквы. 
 
-let string ='i am in the easycode';
+let string ='You are working at the factory';
 let newString = '';
 let n = 0; 
 
@@ -72,7 +72,7 @@ console.log(newString);
 
 
 //task 3.2:
-let mystery = 'tseb eht ma i';
+let mystery = 'doog era uoy';
 let clue = '';
 let p = mystery.length - 1;
 
@@ -93,7 +93,7 @@ console.log(factorial);
 
 
 //task 3.4:
-let tagline = 'JavaScript is a pretty good language';
+let tagline = 'I am really smart girl!';
 let newTagline = '';
 
 for (let i = 0; i < tagline.length; i++) {
@@ -121,9 +121,10 @@ for (let value of numbers) {
 
 //task 3.6:
 let list = {
-	name: 'denis',
-	work: 'easycode',
-	age: 29
+	name: 'nina',
+	work: 'freelance',
+	age: 29,
+	hobby: 'music'
 };
 console.log(list);
 for (let k in list) {
