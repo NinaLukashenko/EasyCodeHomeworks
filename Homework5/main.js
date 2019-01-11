@@ -1,5 +1,5 @@
 //task 1: 
-//ф-ю trim() использовать Денис писал в чате
+//Денис писал в общем чате использовать ф-ю trim() чтобы удалить последний пробел.
 function processArray(array, handler) {
 	let res = '';
 	for (let i = 0; i < array.length; i++) {
@@ -13,18 +13,14 @@ function processArray(array, handler) {
 let array1 = ['my', 'name', 'is', 'Trinity'];
 
 console.log( processArray(array1, function(item) {
-	let newItem ='';
-	newItem += item.substr(0, 1).toUpperCase();
-	newItem += item.substr(1);
-	return `${newItem}`;
+	return `${item[0].toUpperCase()}${item.substr(1)}`;
 }) );
 
 //call 2
 let array2 = [10, 20, 30];
 
 console.log( processArray(array2, function(item) {
-	item *= 10;
-	return `${item}, `;
+	return `${item *= 10}, `;
 }) );
 
 //call 3
@@ -38,8 +34,7 @@ console.log( processArray(array3, function(item) {
 let array4 = ['abc', '123'];
 
 console.log( processArray(array4, function(item) {
-	item = item.split('').reverse().join('');
-	return `${item}, `;
+	return `${item.split('').reverse().join('')}, `;
 }) );
 
 
