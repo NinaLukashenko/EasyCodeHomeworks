@@ -45,18 +45,19 @@ console.log( processArray(array4, function(item) {
 function checkEveryArrayItem(array, callback) {
 	if (!Array.isArray(array)) {
 		console.log('Первый параметр должен быть массивом!');
-	} else {
-		let result = true;
-		for (let i = 0; i < array.length; i++) {
-			if (!callback(array[i])) {
-				result = false;
-			}
+		return;
+	}; 
+
+	let result = true;
+	for (let i = 0; i < array.length; i++) {
+		if (!callback(array[i])) {
+			result = false;
 		}
-		return result;
 	}
+	return result;	
 };
 
-let array21 = [11, 10, 8, 5];
+let array21 = [8, 4, 27, 9];
 console.log( checkEveryArrayItem(array21, function(item, index, array){
 	return item > 5;	
 }) );
