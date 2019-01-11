@@ -1,11 +1,9 @@
 //task 1: //check 2 spaces!!!
 function processArray(array, handler) {
 	let result = '';
-
 	for (let i = 0; i < array.length; i++) {
 		result+=handler(array[i]);
 	}
-
 	return `New value: ${result}`;
 };
 
