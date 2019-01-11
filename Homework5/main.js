@@ -69,11 +69,7 @@ let numbers = [1, 2, 3, 5, 8, 9, 10];
 let numbersData = numbers.map(function(item) {
 	let data = {};
 	data.digit = item;
-	if (item % 2) {
-		data.odd = true;
-	} else {
-		data.odd = false;
-	}
+	data.odd = (item % 2) ? true : false;
 	return data;
 });
 
