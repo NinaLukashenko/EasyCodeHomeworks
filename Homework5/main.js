@@ -38,8 +38,8 @@ console.log( processArray(array3, function(item) {
 let array4 = ['abc', '123'];
 
 console.log( processArray(array4, function(item) {
-	newItem = item.split('').reverse().join('');
-	return `${newItem}, `;
+	item = item.split('').reverse().join('');
+	return `${item}, `;
 }) );
 
 
