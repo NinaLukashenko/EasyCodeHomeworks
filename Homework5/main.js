@@ -48,6 +48,14 @@ function checkEveryArrayItem(array, callback) {
 		return;
 	}; 
 
+	//проверка что в массиве числа в виде чисел или строк:
+	for (let value of array) {
+		if (typeof +value !== 'number' || isNaN(+value)) {
+		console.log('Откуда в массиве не числа? :(');
+		return;	
+		}
+	}
+
 	let result = true;
 	for (let i = 0; i < array.length; i++) {
 		if (!callback(array[i])) {
@@ -57,7 +65,7 @@ function checkEveryArrayItem(array, callback) {
 	return result;	
 };
 
-let array21 = [8, 4, 27, 9];
+let array21 = [8, 14, 27, 1];
 console.log( checkEveryArrayItem(array21, function(item, index, array){
 	return item > 5;	
 }) );
@@ -141,7 +149,7 @@ computers.sort(function(a, b) {
 console.log(computers);
 
 
-// Method sort. task 3 - необязательное задание. Если будет возможность проверьте тоже, пожалуйста)
+// Method sort. task 3 - необязательное задание. Если будет возможность проверьте тоже, плиззззз :)
 let products = [
     {title: 'prod1', price: 5.2},
     {title: 'prod2', price: 0.18},
