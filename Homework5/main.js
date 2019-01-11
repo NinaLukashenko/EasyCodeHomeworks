@@ -1,4 +1,5 @@
 //task 1: 
+//ф-ю trim() использовать Денис писал в чате
 function processArray(array, handler) {
 	let res = '';
 	for (let i = 0; i < array.length; i++) {
