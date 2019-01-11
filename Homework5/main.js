@@ -1,10 +1,11 @@
 //task 1: //check 2 spaces!!!
 function processArray(array, handler) {
-	let result = '';
+	let res = '';
 	for (let i = 0; i < array.length; i++) {
-		result+=handler(array[i]);
+		res+=handler(array[i]);
 	}
-	return `New value: ${result}`;
+	let result = res.trim();
+	return `"New value: ${result}"`;
 };
 
 //call 1
@@ -22,14 +23,14 @@ let array2 = [10, 20, 30];
 
 console.log( processArray(array2, function(item) {
 	item *= 10;
-	return ` ${item},`;
+	return `${item}, `;
 }) );
 
 //call 3
 let array3 = [{age: 45, name: 'Jhon'}, {age: 20, name: 'Aaron'}];
 
 console.log( processArray(array3, function(item) {
-	return ` ${item.name} is ${item.age},`;
+	return `${item.name} is ${item.age}, `;
 }) );
 
 //call 4
@@ -37,7 +38,7 @@ let array4 = ['abc', '123'];
 
 console.log( processArray(array4, function(item) {
 	newItem = item.split('').reverse().join('');
-	return ` ${newItem},`;
+	return `${newItem}, `;
 }) );
 
 
