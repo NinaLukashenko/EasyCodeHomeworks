@@ -48,9 +48,9 @@ function checkEveryArrayItem(array, callback) {
 		return;
 	}; 
 
-	//проверка что в массиве числа в виде чисел или строк:
+	//проверка что в массиве только числа:
 	for (let value of array) {
-		if (typeof +value !== 'number' || isNaN(+value)) {
+		if (typeof value !== 'number' || isNaN(value)) {
 		console.log('Откуда в массиве не числа? :(');
 		return;	
 		}
