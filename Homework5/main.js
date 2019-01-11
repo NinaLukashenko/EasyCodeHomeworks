@@ -5,7 +5,7 @@ function processArray(array, handler) {
 		res+=handler(array[i]);
 	}
 	let result = res.trim();
-	return `"New value: ${result}"`;
+	return `New value: ${result}`;
 };
 
 //call 1
