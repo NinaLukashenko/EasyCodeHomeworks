@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Homework-6</title>
+</head>
+<body>
+<div>
+	<article>
+		<p>Lorem ipsum dolor sit amet, odio omnesque ius cu, quo ex atqui antiopam. At detracto menandri eos. Duo in causae viderer, graeci <a href="#">reprehendunt</a> has in. Decore <mark>nemore</mark> philosophia te pro, nobis legere causae ex mei, odio putant mentitum ea ius. Vix nostro deserunt explicari eu.</p>
+	</article>
+</div>
+<ul>
+	<li><a href="#">Link1</a></li>
+	<li><a href="#">Link2</a></li>
+	<li><a href="#">Link3</a></li>
+	<li><a href="#">Link4</a></li>
+</ul><span></span>
+<a href="#">Some link</a>
+
+<script>
+//task 2.1
+	
+function isParent(parent, child) {
+	
+	let allKids = parent.getElementsByTagName('*');
+
+	for (let i = 0; i < allKids.length; i++) {
+		if (allKids[i] === child) {
+			return true;
+		}
+	}
+	return false;
+}
+console.log( isParent(document.body.children[0], document.querySelector('mark')) );
+
+
+//task 2.2
+let allLinks = document.links;
+let list = document.querySelector('ul');
+let listOfRequestedLinks = [];
+
+for (let i = 0; i < allLinks.length; i++) {
+	if ( list !== allLinks[i].parentElement.parentElement) {
+		listOfRequestedLinks.push(allLinks[i]);
+	}
+}
+
+console.log ( listOfRequestedLinks );
+
+
+//task 2.3
+console.log( document.querySelector('ul').previousElementSibling );
+console.log( document.querySelector('ul').nextElementSibling );
+
+
+//task 2.4
+console.log( document.querySelector('ul').children.length );
+
+
+//task 2.5
+// Sublime Text 3 при формировании комментариев JSDoc вместо returns пишет return, может что-то еще не так как VS, надеюсь, это непринципиально.
+
+/**
+ * [description]
+ * @param  {String} id    [description]
+ * @param  {String} title [description]
+ * @param  {String} text  [description]
+ * @return {[]}       [description]
+ */
+const editTodoItem = (id, title, text) => {
+	if (!id) return console.log('Please provide todo id');
+	if (!title) return console.log('Please provide new todo title');
+	if (!text) return console.log('Please provide new todo text');
+
+	todosStorage.currentTodos.map((item) => {
+		if (item.id === id) {
+			item.title = title;
+			item.text = text;
+		}
+	});
+	return todosStorage.currentTodos;
+}
+
+
+//task 2.6
+const generateId = () => {
+	const uniqueValues = '0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM';
+	// Вариант из инета:
+	//http://qaru.site/questions/3112/generate-random-stringcharacters-in-javascript
+	//Преобразуйте число в строку базы 36, то есть используя символы 0-9 и a-z.
+	//Вариант плох тем, что буквы только в нижнем регистре генерируются.
+
+	// let id = Math.random().toString(36).substr(2, 10);
+	// return id;
+
+	// Мой вариант:
+	let id = '';
+	let i = 0;
+	while (i < 10) {
+	id += uniqueValues.charAt(Math.round(Math.random()*uniqueValues.length));
+	i++;
+	};
+
+	return id;	
+}
+		
+</script>
+</body>
+</html>
