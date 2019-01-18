@@ -15,7 +15,6 @@ for (let i = howManyLiHasUl; i < howManyLiHasUl + howManyLiToAdd; i++) {
 let linksInUl = document.querySelectorAll('ul a');
 
 for (let i = 0; i < linksInUl.length; i++) {
-	console.log(linksInUl[i]);
 	linksInUl[i].insertAdjacentHTML('beforeEnd', '<strong></strong>');
 }
 
@@ -35,22 +34,28 @@ mark.classList.add('green');
 
 
 //task 3.5
-let links = document.querySelector('ul').children;
+let ul = document.querySelector('ul');
+let links = ul.children;
 
 // Делаем из псевдомассива массив:
-
 let linksArray = [];
 
 for (let i = 0; i < links.length; i++) {
-	linksArray[i] = links[i].textContent;
+	linksArray[i] = links[i].innerHTML;
 }
 
+//Сортируем в обратном порядке:
 let sortedLinks = linksArray.sort( (a, b) => {
 	if ( b > a) return 1;
 	if ( b < a) return -1;
 });
 
-console.log(sortedLinks);
+//Перерисовка DOM:
+for (let i = 0; i < sortedLinks.length; i++) {
+	ul.children[i].innerHTML = sortedLinks[i];
+}
+
+
 
 
 
