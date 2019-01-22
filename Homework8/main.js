@@ -39,7 +39,8 @@ document.getElementById('btn-generate').addEventListener('click', addLi);
 
 
 //task 5
-//Project TODO
+//Project TODO:
+//https://github.com/NinaLukashenko/EasyCodeHomeworks/tree/master/ProjectTODO
 
 
 //task 7
