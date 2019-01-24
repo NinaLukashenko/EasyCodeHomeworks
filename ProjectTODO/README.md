@@ -5,5 +5,5 @@
 
 **Go to the link below and check it out ;-) **
 
-(https://ninalukashenko.github.io/App_Todo/)
+https://ninalukashenko.github.io/App_Todo/
 
