@@ -163,7 +163,7 @@ const calculator = ( function() {
 	}
 
 	function showValue() {
-		console.log( Math.round(_value, 2) );
+		console.log( +(_value).toFixed(2) );
 	}
 
 	return {
