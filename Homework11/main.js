@@ -14,7 +14,6 @@ const httpClient = new CustomHttp();
 
 httpClient.get(`${url}/users`, (response) => {
 	let users = JSON.parse(response);
-	console.log(users);
 
 	users.forEach( (item) => {
 		const template = `<tr><td data-id=${item.id}>${item.name} <button type="button" class="btn btn-info">See Profile</button></td></tr>`;
@@ -34,36 +33,50 @@ httpClient.get(`${url}/users`, (response) => {
 		for (let i = 0; i < users.length; i++) {
 			if (users[i].id === dataId) {
 				document.querySelector('#details-block').innerHTML = '';
-				const template = `
-						<table class="table table-bordered">
-							<thead class="thead-light">
-								<tr>
-									<th>${users[i].name}</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Username: ${users[i].username}</td>
-								</tr>
-								<tr>
-									<td>Website: ${users[i].website}</td>
-								</tr>
-								<tr>
-									<td>Phone: ${users[i].phone}</td>
-								</tr>
-								<tr>
-									<td>E-mail: ${users[i].email}</td>
-								</tr>
-								<tr>
-									<td>Company: ${users[i].company.name}</td>
-								</tr>
-								<tr>
-									<td>Address: ${users[i].address.city}</td>
-								</tr>
-							</tbody>
-						</table>			
+				let tableWithDetails = `
+					<table class="table table-bordered">
+						<thead class="thead-light">
+							<tr>
+								<th>Details about:<mark> ${users[i].name} </mark></th>
+							</tr>
+						</thead>
+						<tbody>
 				`;
-				document.querySelector('#details-block').insertAdjacentHTML('afterbegin', template);	
+
+				for (let key in users[i]) {
+					if (typeof users[i][key] !== 'object') {
+						tableWithDetails += `
+						<tr>
+							<td>${key}: ${users[i][key]}</td>
+						</tr>
+						`	
+					} else {
+						tableWithDetails += `
+							<tr>
+							<td><a class="card-link"  data-toggle="collapse"  href="#collapseOne">
+							${key} - press the link to see/hide all details
+							</a></td>
+							</tr>
+						`	
+						for (let deepKey in users[i][key]) {
+							if (deepKey === 'geo'){
+								console.log("geo is to secret info");
+							} else {
+								tableWithDetails += `
+								<tr id="collapseOne" class="collapse">
+								<td>${key} - ${deepKey}: ${users[i][key][deepKey]}</td>
+								</tr>
+								`	
+							}					
+						}
+					}
+				};
+					
+				tableWithDetails += `
+						</tbody>
+					</table>
+				`;
+				document.querySelector('#details-block').insertAdjacentHTML('afterbegin', tableWithDetails);	
 				break;			
 			}
 		}
