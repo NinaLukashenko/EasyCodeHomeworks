@@ -53,8 +53,8 @@ httpClient.get(`${url}/users`, (response) => {
 					} else {
 						tableWithDetails += `
 							<tr>
-							<td><a class="card-link"  data-toggle="collapse"  href="#collapseOne">
-							${key} - press the link to see/hide all details
+							<td class="bg-info"><a class="card-link"  data-toggle="collapse"  href="#${key}">
+							<mark> ${key} </mark> *press here to see/hide all details
 							</a></td>
 							</tr>
 						`	
@@ -63,8 +63,8 @@ httpClient.get(`${url}/users`, (response) => {
 								console.log("geo is to secret info");
 							} else {
 								tableWithDetails += `
-								<tr id="collapseOne" class="collapse">
-								<td>${key} - ${deepKey}: ${users[i][key][deepKey]}</td>
+								<tr id="${key}" class="collapse">
+								<td class="text-info">${deepKey}: ${users[i][key][deepKey]}</td>
 								</tr>
 								`	
 							}					
