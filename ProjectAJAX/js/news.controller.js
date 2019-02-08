@@ -8,24 +8,25 @@ const countrySelect = form['country'];
 const categorySelect = form['category'];
 const searchInput = document.getElementById('search');
 
+
 /**
- * onSelectChange - processes the response from the server 
+ * onSelectChange - process the response from the server 
  * @param  {[type]} event [description]
  * @return {[type]}       [description]
  */
 function onSelectChange() {
   const country = countrySelect.value;
   const category = categorySelect.value;
-
   if (!country || !category) return console.error('Please, select some country and category');
   newsService.getTopHeadlinesNews(country, category, (response) => {
     const { totalResults, articles } = response;
 
     uiService.clearContainer();
 
-    articles.forEach((article) => uiService.addArticle(article));
+    articles.forEach((article) => uiService.addArticle(article));  
   });
 }
+
 
 /**
  * onInputChange - processes the response from the server
@@ -35,17 +36,17 @@ function onInputChange() {
   const q = searchInput.value;
   if (q.length > 3) {
     newsService.getEverythingNews(q, (response) => {
-    let { totalResults, articles } = response;
+      const { totalResults, articles } = response;
 
-    notificationUI.clearContainer();
+      uiService.clearContainer();
 
-    if (!totalResults) {
-      notificationUI.addNotification('Sorry, but nothing was found:(');   
-    };
+      articles.forEach((article) => uiService.addArticle(article));  
 
-    uiService.clearContainer();
+      notificationUI.clearContainer();
 
-    articles.forEach((article) => uiService.addArticle(article));      
+      if (!totalResults) {
+        notificationUI.addNotification('Sorry, but nothing was found:(');   
+      };
     })
   }
 }
