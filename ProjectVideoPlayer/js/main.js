@@ -30,6 +30,14 @@ class VideoPlayer {
     this._video.currentTime = e.offsetX / this._progressContainer.offsetWidth * this._video.duration;
   }
 
+/**
+ * _volumeHandler changes video volume 
+ * @return {[type]}   [description]
+ */
+  _volumeHandler() {
+    this._video.volume = this._volume.value;
+  }
+
   _addTemplate() {
     const template = this._createVideoTemplate();
     const container = document.querySelector(this._settings.videoPlayerContainer);
@@ -42,6 +50,12 @@ class VideoPlayer {
     this._toggleBtn = this._videoContainer.querySelector('.toggle');
     this._progress = this._videoContainer.querySelector('.progress__filled');
     this._progressContainer = this._videoContainer.querySelector('.progress');
+
+    /**
+     * volume controler
+     * @type {[type]}
+     */
+    this._volume = this._videoContainer.querySelector('input[name="volume"]');
   }
 
   _setEvents() {
@@ -53,7 +67,8 @@ class VideoPlayer {
      * @param  {event} 'keypress' [description]
      * @return {[type]}            [description]
      */
-    document.addEventListener('keypress', (e) => {
+    document.addEventListener('keydown', (e) => {
+      e.preventDefault();
       if (e.keyCode === 32) {
         this.toggle();
       }
@@ -61,6 +76,13 @@ class VideoPlayer {
 
     this._video.addEventListener('timeupdate', () => this._videoProgressHandler());
     this._progressContainer.addEventListener('click', (e) => this._rewind(e));
+
+    /**
+     * adding event listener for clicking volume controler
+     * @param  {event} 'click' [description]
+     * @return {[type]}         [description]
+     */
+    this._volume.addEventListener('click', () => this._volumeHandler());
   }
 
   _createVideoTemplate() {
