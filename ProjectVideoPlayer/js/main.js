@@ -15,10 +15,9 @@ class VideoPlayer {
   }
 
   toggle() {
-    const method = this._video.paused ? 'play' : 'pause';
-    this._video[method]();
-    this._toggleBtn.textContent = this._video.paused ? '►' : '❚ ❚';
-    
+      const method = this._video.paused ? 'play' : 'pause';
+      this._video[method]();
+      this._toggleBtn.textContent = this._video.paused ? '►' : '❚ ❚';
   }
 
   _videoProgressHandler() {
@@ -36,6 +35,46 @@ class VideoPlayer {
  */
   _volumeHandler() {
     this._video.volume = this._volume.value;
+  }
+
+  /**
+   * _playbackRateHandler changes video playbackRate
+   * @return {[type]} [description]
+   */
+  _playbackRateHandler() {
+    this._video.playbackRate = this._playbackRate.value;
+    console.log(this._video.playbackRate);
+  }
+
+  /**
+   * [_skipHandler description]
+   * @return {[type]} [description]
+   */
+  _skipPrevHandler() {
+    this._video.currentTime += this._settings.skipPrev;
+  }
+
+  /**
+   * [_skipNextHandler description]
+   * @return {[type]} [description]
+   */
+  _skipNextHandler() {
+    this._video.currentTime += this._settings.skipNext;
+  }
+
+  /**
+   * [_skipHandler description]
+   * @param  {[type]} e [description]
+   * @return {[type]}   [description]
+   */
+  _skipHandler(e) {
+    // the video is devided into 3 parts: left, center, right
+      const third = this._video.offsetWidth / 3;
+      if (e.offsetX <= third) {
+        this._video.currentTime += this._settings.skipPrev;
+      } else if (e.offsetX >= this._video.offsetWidth - third) {
+        this._video.currentTime += this._settings.skipNext;
+      }
   }
 
   _addTemplate() {
@@ -56,11 +95,31 @@ class VideoPlayer {
      * @type {[type]}
      */
     this._volume = this._videoContainer.querySelector('input[name="volume"]');
+    /**
+     * playback controler
+     * @type {[type]}
+     */
+    this._playbackRate = this._videoContainer.querySelector('input[name="playbackRate"]');
+
+  /**
+   * _skipPrev description
+   * @type {[type]}
+   */
+    this._skipPrev = this._videoContainer.querySelector(`button[data-skip="${this._settings.skipPrev}"]`);
+
+    /**
+     * [_skipNext description]
+     * @type {[type]}
+     */
+    this._skipNext = this._videoContainer.querySelector(`button[data-skip="${this._settings.skipNext}"]`);
+
   }
 
   _setEvents() {
     this._video.addEventListener('click', () => this.toggle());
     this._toggleBtn.addEventListener('click', () => this.toggle());
+    this._video.addEventListener('timeupdate', () => this._videoProgressHandler());
+    this._progressContainer.addEventListener('click', (e) => this._rewind(e));
 
     /**
      * adding event listener for pressing key "space"
@@ -68,14 +127,11 @@ class VideoPlayer {
      * @return {[type]}            [description]
      */
     document.addEventListener('keydown', (e) => {
-      e.preventDefault();
       if (e.keyCode === 32) {
+        e.preventDefault();
         this.toggle();
       }
     });
-
-    this._video.addEventListener('timeupdate', () => this._videoProgressHandler());
-    this._progressContainer.addEventListener('click', (e) => this._rewind(e));
 
     /**
      * adding event listener for clicking volume controler
@@ -83,21 +139,49 @@ class VideoPlayer {
      * @return {[type]}         [description]
      */
     this._volume.addEventListener('click', () => this._volumeHandler());
+
+    /**
+     * [description]
+     * @param  {event} 'click' [description]
+     * @return {[type]}         [description]
+     */
+    this._playbackRate.addEventListener('click', () => this._playbackRateHandler());
+
+    /**
+     * [description]
+     * @param  {[type]} 'click' [description]
+     * @return {[type]}         [description]
+     */
+    this._skipPrev.addEventListener('click', () => this._skipPrevHandler());
+
+    /**
+     * [description]
+     * @param  {[type]} 'click' [description]
+     * @return {[type]}         [description]
+     */
+    this._skipNext.addEventListener('click', () => this._skipNextHandler());
+
+    /**
+     * [description]
+     * @param  {[type]} 'dbclick' [description]
+     * @return {[type]}           [description]
+     */
+    this._video.addEventListener('dblclick', (e) => this._skipHandler(e));
   }
 
   _createVideoTemplate() {
     return `
       <div class="player">
-        <video class="player__video viewer" src="video/mov_bbb.mp4"></video>
+        <video class="player__video viewer" src="${this._settings.videoUrl}"></video>
         <div class="player__controls">
           <div class="progress">
             <div class="progress__filled"></div>
           </div>
           <button class="player__button toggle" title="Toggle Play">►</button>
-          <input type="range" name="volume" class="player__slider" min=0 max="1" step="0.05" value="1">
+          <input type="range" name="volume" class="player__slider" min=0 max="1" step="0.05" value="${this._settings.volume}">
           <input type="range" name="playbackRate" class="player__slider" min="0.5" max="2" step="0.1" value="1">
-          <button data-skip="-1" class="player__button">« 1s</button>
-          <button data-skip="1" class="player__button">1s »</button>
+          <button data-skip="${this._settings.skipPrev}" class="player__button">« ${this._settings.skipPrev}s</button>
+          <button data-skip="${this._settings.skipNext}" class="player__button">${this._settings.skipNext}s »</button>
         </div>
       </div>
     `;
@@ -107,7 +191,9 @@ class VideoPlayer {
     return {
       videoUrl: '',
       videoPlayerContainer: 'body',
-      volume: 1
+      volume: 1,
+      skipPrev: -2,
+      skipNext: 2
     }
   }
 
