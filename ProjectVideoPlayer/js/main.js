@@ -48,7 +48,7 @@ class VideoPlayer {
   }
 
   /**
-   * _skipHandler skips video currenTime back
+   * _skipPrevHandler skips video currenTime back
    * @return {[type]} [description]
    */
   _skipPrevHandler() {
