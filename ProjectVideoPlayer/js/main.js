@@ -73,9 +73,9 @@ class VideoPlayer {
       const third = this._video.offsetWidth / 3;
 
       if (e.offsetX <= third) {
-        this._video.currentTime += this._settings.skipPrev;
+        this._skipPrevHandler();
       } else if (e.offsetX >= this._video.offsetWidth - third) {
-        this._video.currentTime += this._settings.skipNext;
+        this._skipNextHandler();
       }
   }
 
