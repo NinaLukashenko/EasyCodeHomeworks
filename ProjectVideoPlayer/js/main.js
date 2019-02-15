@@ -16,12 +16,14 @@ class VideoPlayer {
 
   toggle() {
       const method = this._video.paused ? 'play' : 'pause';
+
       this._video[method]();
       this._toggleBtn.textContent = this._video.paused ? '►' : '❚ ❚';
   }
 
   _videoProgressHandler() {
     const percent = this._video.currentTime / this._video.duration * 100;
+
     this._progress.style.flexBasis = `${percent}%`;
   }
 
@@ -43,11 +45,10 @@ class VideoPlayer {
    */
   _playbackRateHandler() {
     this._video.playbackRate = this._playbackRate.value;
-    console.log(this._video.playbackRate);
   }
 
   /**
-   * [_skipHandler description]
+   * _skipHandler skips video currenTime back
    * @return {[type]} [description]
    */
   _skipPrevHandler() {
@@ -55,7 +56,7 @@ class VideoPlayer {
   }
 
   /**
-   * [_skipNextHandler description]
+   * _skipNextHandler skips video currenTime forward
    * @return {[type]} [description]
    */
   _skipNextHandler() {
@@ -63,13 +64,14 @@ class VideoPlayer {
   }
 
   /**
-   * [_skipHandler description]
-   * @param  {[type]} e [description]
+   * _skipHandler skips video currenTime back or forward depending on where the dblclick was done
+   * @param  {event} e [description]
    * @return {[type]}   [description]
    */
   _skipHandler(e) {
     // the video is devided into 3 parts: left, center, right
       const third = this._video.offsetWidth / 3;
+
       if (e.offsetX <= third) {
         this._video.currentTime += this._settings.skipPrev;
       } else if (e.offsetX >= this._video.offsetWidth - third) {
@@ -80,6 +82,7 @@ class VideoPlayer {
   _addTemplate() {
     const template = this._createVideoTemplate();
     const container = document.querySelector(this._settings.videoPlayerContainer);
+
     container ? container.insertAdjacentHTML('afterbegin', template) : console.error('videoPlayerContainer is not found');
   }
 
@@ -102,13 +105,13 @@ class VideoPlayer {
     this._playbackRate = this._videoContainer.querySelector('input[name="playbackRate"]');
 
   /**
-   * _skipPrev description
+   * _skipPrev controler
    * @type {[type]}
    */
     this._skipPrev = this._videoContainer.querySelector(`button[data-skip="${this._settings.skipPrev}"]`);
 
     /**
-     * [_skipNext description]
+     * _skipNext controler
      * @type {[type]}
      */
     this._skipNext = this._videoContainer.querySelector(`button[data-skip="${this._settings.skipNext}"]`);
@@ -116,7 +119,30 @@ class VideoPlayer {
   }
 
   _setEvents() {
-    this._video.addEventListener('click', () => this.toggle());
+    /**
+     * variables for setting timer to ignore click event if it was first of double click and not final one
+     * @type {Number} 'timer'
+     * @type {Number} 'delay'
+     * @type {Boolean} 'prevent'
+     */
+    let timer = 0;
+    let delay = 300;
+    let prevent = false;
+
+    /**
+     * adding event listener for single clicking the video 
+     * the method was borrowed here:
+     * https://css-tricks.com/snippets/javascript/bind-different-events-to-click-and-double-click/ 
+     * @param  {event} 'click' [description]
+     * @return {[type]}         [description]
+     */
+    this._video.addEventListener('click', () => {
+      timer = setTimeout( () => {
+        if(!prevent) this.toggle();
+        prevent = false;
+      }, delay);   
+    });
+
     this._toggleBtn.addEventListener('click', () => this.toggle());
     this._video.addEventListener('timeupdate', () => this._videoProgressHandler());
     this._progressContainer.addEventListener('click', (e) => this._rewind(e));
@@ -141,32 +167,36 @@ class VideoPlayer {
     this._volume.addEventListener('click', () => this._volumeHandler());
 
     /**
-     * [description]
+     * adding event listener for clicking playbackRate controler
      * @param  {event} 'click' [description]
      * @return {[type]}         [description]
      */
     this._playbackRate.addEventListener('click', () => this._playbackRateHandler());
 
     /**
-     * [description]
-     * @param  {[type]} 'click' [description]
+     * adding event listener for clicking skip prev btn
+     * @param  {event} 'click' [description]
      * @return {[type]}         [description]
      */
     this._skipPrev.addEventListener('click', () => this._skipPrevHandler());
 
     /**
-     * [description]
-     * @param  {[type]} 'click' [description]
+     * adding event listener for clicking skip next btn
+     * @param  {event} 'click' [description]
      * @return {[type]}         [description]
      */
     this._skipNext.addEventListener('click', () => this._skipNextHandler());
 
     /**
-     * [description]
-     * @param  {[type]} 'dbclick' [description]
+     * adding event listener for dblclicking the video
+     * @param  {event} 'dbclick' [description]
      * @return {[type]}           [description]
      */
-    this._video.addEventListener('dblclick', (e) => this._skipHandler(e));
+    this._video.addEventListener('dblclick', (e) => {
+      clearTimeout(timer);
+      prevent = true;  
+      this._skipHandler(e)
+    } );
   }
 
   _createVideoTemplate() {
