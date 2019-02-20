@@ -5,40 +5,45 @@
 //https://learn.javascript.ru/array
 //https://learn.javascript.ru/arguments-pseudoarray
 
-function multiply() {
-	if (!arguments.length) {
-		return 0;
-	} else {
-		let mulp = 1;
-		for (let i = 0; i < arguments.length; i++) {
-			mulp *= arguments[i];
-		}
-		return mulp;
-	}
-}
+// function multiply() {
+// 	if (!arguments.length) {
+// 		return 0;
+// 	} else {
+// 		let mulp = 1;
+// 		for (let i = 0; i < arguments.length; i++) {
+// 			mulp *= arguments[i];
+// 		}
+// 		return mulp;
+// 	}
+// }
 
-console.log( multiply(-5, -2) );
+// console.log( multiply(-5, -2) );
 
 
-//task 2:
-function getReverseString(string) {
-	return string.split('').reverse().join('');
-}
+// //task 2:
+// function getReverseString(string) {
+// 	return string.split('').reverse().join('');
+// }
 
-console.log( getReverseString('test') );
+// console.log( getReverseString('test') );
 
 
 //task 3:
 function getCodeStringFromNumber(text) {
 	let codeString = '';
+	let codeString2 ='';
 	for (let i = 0; i < text.length; i++) {
 		if (i === text.length - 1) {
 			codeString += text.charCodeAt(i);
 		} else {
 			codeString += text.charCodeAt(i) + ' ';
 		}	
+		codeString2 = (i === text.length - 1) ? (+= text.charCodeAt(i)) : (+= text.charCodeAt(i) + ' ');
+		
 	}
+	console.log(codeString2);
 	return codeString;
+
 }
 
 console.log( getCodeStringFromNumber('hello') );

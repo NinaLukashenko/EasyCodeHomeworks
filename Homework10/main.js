@@ -157,7 +157,7 @@ const calculator = ( function() {
 			console.log('Please provide a number!');
 			return;
 		}
-
+	
 		_value = Math.pow(_value, value);
 		return this;
 	}
@@ -177,5 +177,6 @@ const calculator = ( function() {
 	};
 
 }());
+
 
 calculator.setValue(10).powValue(2).showValue();
