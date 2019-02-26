@@ -42,7 +42,6 @@ export class SignUpComponent {
   }
 
   afterRender() {
-
     document.forms['registrationForm'].addEventListener('submit', (e) => {
       e.preventDefault();
 
