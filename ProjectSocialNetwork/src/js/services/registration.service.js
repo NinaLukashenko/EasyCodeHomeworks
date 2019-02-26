@@ -7,10 +7,7 @@ export class RegistrationService {
 
     return new Promise((resolve, reject) => {
       http.post(`${ENV.apiUrl}/public/auth/signup`, user)
-        .then((response) => {
-          if (!response.auth) return reject(response);
-          resolve(response);
-        })
+        .then((response) => resolve(response))
         .catch((err) => reject(err));
     });
   }
