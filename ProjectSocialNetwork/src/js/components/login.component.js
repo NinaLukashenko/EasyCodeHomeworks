@@ -1,8 +1,16 @@
 import { AuthService } from './../services/auth.service';
+import { Routing } from '../core/routing.service';
 
 export class LoginComponent {
   constructor() {
     this._authService = new AuthService();
+    this._routing = new Routing();
+  }
+
+  async beforeRender() {
+    if (this._authService.userToken) {
+      this._routing.navigate(`/users/${this._authService.userId}`);
+    }
   }
 
   render() {
@@ -43,6 +51,7 @@ export class LoginComponent {
     this._authService.login(email, password)
         .then((response) => {
             console.log(response);
+            this._routing.navigate(`/users/${response.id}`);
         })
         .catch((err) => {
             console.log(err);

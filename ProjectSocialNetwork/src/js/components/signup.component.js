@@ -5,6 +5,9 @@ export class SignUpComponent {
     this._registrationService = new RegistrationService();
   }
 
+  async beforeRender() {
+  }
+
   render() {
     return `
       <div class="registration-wrap d-flex mt-5">

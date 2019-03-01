@@ -13,4 +13,25 @@ export class Http {
             .catch((err) => reject(err));
         });
     }
+    get(url) {
+        return new Promise((resolve, reject) => {
+            fetch(url)
+            .then((response) => response.json())
+            .then((data) => resolve(data))
+            .catch((err) => reject(err));
+        });
+    }
+
+    getNews(url, header, token) {
+        return new Promise((resolve, reject) => {
+            fetch(url, {
+                headers: {
+                    'x-access-token': `${token}` 
+                }  
+            })
+            .then((response) => response.json())
+            .then((data) => resolve(data))
+            .catch((err) => reject(err));
+        });
+    }
 }

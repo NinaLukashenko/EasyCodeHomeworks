@@ -2,6 +2,14 @@ import { Http } from './../core/http.service';
 import { ENV } from './../config/env.config';
 
 export class AuthService {
+    get userId() {
+        return localStorage.getItem('sn_user_id');
+    }
+
+    get userToken() {
+        return localStorage.getItem('sn_user_token');
+    }
+
     login(email, password) {
         const http = new Http();
 
