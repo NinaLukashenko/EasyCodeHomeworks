@@ -22,7 +22,7 @@ export class Http {
         });
     }
 
-    getNews(url, header, token) {
+    getNews(url, token) {
         return new Promise((resolve, reject) => {
             fetch(url, {
                 headers: {
