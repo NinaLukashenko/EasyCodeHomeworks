@@ -3,11 +3,11 @@ import { WinnersService } from '../services/winners.service';
 export class WinnersComponent {
   constructor() {
     this._winnersService = new WinnersService();
-    this._winnes;
+    this._winners;
   }
 
   async beforeRender() {
-    this._winnes = await this._winnersService.getWinners(15, 1);
+    this._winners = await this._winnersService.getWinners(15, 1);
   }
  
   render() {
@@ -18,7 +18,7 @@ export class WinnersComponent {
       </div>
     `);
 
-    this._winnes.winners.forEach( (item) => {
+    this._winners.winners.forEach( (item) => {
       return document.querySelector('.winners').insertAdjacentHTML('beforeend', `
       <div class="col-3">          
         <img src="${item.member_id.images[0].image_basic.url}" class="rounded img-fluid"> 
@@ -34,16 +34,16 @@ export class WinnersComponent {
   //       <h2>The Winners!</h2> 
   //       <div class="row">
   //         <div class="col-3">          
-  //           <img src="${this._winnes.winners[0].member_id.images[0].image_basic.url}" class="rounded img-fluid"> 
+  //           <img src="${this._winners.winners[0].member_id.images[0].image_basic.url}" class="rounded img-fluid"> 
   //         </div>
   //         <div class="col-3">          
-  //           <img src="${this._winnes.winners[1].member_id.images[0].image_basic.url}" class="rounded img-fluid"> 
+  //           <img src="${this._winners.winners[1].member_id.images[0].image_basic.url}" class="rounded img-fluid"> 
   //         </div>
   //         <div class="col-3">          
-  //           <img src="${this._winnes.winners[2].member_id.images[0].image_basic.url}" class="rounded img-fluid"> 
+  //           <img src="${this._winners.winners[2].member_id.images[0].image_basic.url}" class="rounded img-fluid"> 
   //         </div>
   //         <div class="col-3">          
-  //           <img src="${this._winnes.winners[3].member_id.images[0].image_basic.url}" class="rounded img-fluid"> 
+  //           <img src="${this._winners.winners[3].member_id.images[0].image_basic.url}" class="rounded img-fluid"> 
   //         </div>
   //       </div>
   //     </div>
