@@ -11,7 +11,7 @@ export class WinnersComponent {
   }
  
   render() {
-    document.querySelector('body').insertAdjacentHTML('beforeend', `
+    document.querySelector('app-container').insertAdjacentHTML('afterend', `
       <div class="container">
         <div class="row winners">
         </div>
