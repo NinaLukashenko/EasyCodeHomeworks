@@ -1,6 +1,7 @@
 import { ActiveRoute } from './../core/active-route.service';
 import { AuthService } from './../services/auth.service';
 import { UserService } from './../services/user.service';
+import { Routing } from './../core/routing.service';
 
 
 export class UserComponent {
@@ -8,14 +9,13 @@ export class UserComponent {
     this._activeRoute = new ActiveRoute();
     this._authService = new AuthService();
     this._userService = new UserService();
-
-    this._authUserId = this._authService.userId;
+    this._routing = new Routing();
     this._activeUserId = this._activeRoute.parseRequestURL().id;
     this._user;
   }
 
   async beforeRender() {
-    this._user = await this._userService.getUser(this._authUserId);
+    this._user = await this._userService.getUser(this._authService.userId);
   }
 
   render() {
