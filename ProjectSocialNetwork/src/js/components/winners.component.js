@@ -8,8 +8,6 @@ export class WinnersComponent {
 
   async beforeRender() {
     this._winnes = await this._winnersService.getWinners(15, 1);
-    console.log(this._winnes.winners[0].member_id.images[0].image_basic.url);
-    console.log(this._winnes.winners);
   }
  
   render() {
